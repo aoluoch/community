@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './styles/tailwind.css';
+@import './styles/utils.css';
 
 :root {
   font-family: Poppins, system-ui, sans-serif;
@@ -14,75 +13,139 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --radius: 0.75rem;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 1rem;
   }
 
-  * {
-    @apply border-border;
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
+}
 
-  body {
-    @apply bg-background text-foreground antialiased;
-  }
+/* Container utilities */
+.container-width {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  /* Base responsive typography */
-  h1 {
-    @apply text-3xl font-bold md:text-4xl lg:text-5xl xl:text-6xl;
-  }
+.container-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 
-  h2 {
-    @apply text-2xl font-bold md:text-3xl lg:text-4xl;
-  }
-
-  h3 {
-    @apply text-xl font-bold md:text-2xl lg:text-3xl;
-  }
-
-  h4 {
-    @apply text-lg font-bold md:text-xl lg:text-2xl;
-  }
-
-  p {
-    @apply text-base md:text-lg;
-  }
-
-  /* Consistent spacing utilities */
+@media (min-width: 640px) {
   .container-padding {
-    @apply px-4 sm:px-6 lg:px-8;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Section spacing */
+.section-spacing-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.section-spacing-md {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.section-spacing-lg {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 1024px) {
+  .section-spacing-sm {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 
-  .section-padding {
-    @apply py-12 md:py-16 lg:py-24;
+  .section-spacing-md {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
   }
 
-  /* Smooth transitions */
-  .transition-standard {
-    @apply transition-all duration-300;
+  .section-spacing-lg {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
+}
 
-  /* Responsive container width */
-  .container-width {
-    @apply max-w-[1440px] mx-auto;
-  }
+/* Text content max-widths */
+.text-content-sm {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-content-md {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-content-lg {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Common transitions */
+.transition-standard {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

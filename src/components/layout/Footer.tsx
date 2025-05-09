@@ -22,17 +22,11 @@ const programLinks = [
   { label: "Mental Health", href: "/programs#health" },
 ];
 
-const contactInfo = [
-  { label: "123 Community Street", href: "https://maps.google.com" },
-  { label: "Nairobi, Kenya", href: "https://maps.google.com" },
-  { label: "info@getmorecentre.org", href: "mailto:info@getmorecentre.org" },
-  { label: "+254 712 345 678", href: "tel:+254712345678" },
-];
 
 export default function Footer() {
   return (
-    <footer className="bg-accent">
-      <div className="container-width container-padding py-16 lg:py-24">
+    <footer className="bg-accent mt-auto">
+      <div className="container-width container-padding section-spacing-md">
         <Grid cols={4} gap="lg" className="mb-16">
           <div className="col-span-4 md:col-span-1">
             <Link to="/" className="block mb-6">
@@ -51,15 +45,13 @@ export default function Footer() {
           </div>
 
           <div className="col-span-4 md:col-span-1">
-            <h3 className="font-semibold text-lg lg:text-xl mb-4">
-              Quick Links
-            </h3>
+            <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-3">
               {mainLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-standard"
                   >
                     {link.label}
                   </Link>
@@ -69,15 +61,13 @@ export default function Footer() {
           </div>
 
           <div className="col-span-4 md:col-span-1">
-            <h3 className="font-semibold text-lg lg:text-xl mb-4">
-              Our Programs
-            </h3>
+            <h3 className="text-xl font-semibold mb-4">Our Programs</h3>
             <ul className="space-y-3">
               {programLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     to={link.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-standard"
                   >
                     {link.label}
                   </Link>
@@ -87,7 +77,7 @@ export default function Footer() {
           </div>
 
           <div className="col-span-4 md:col-span-1">
-            <h3 className="font-semibold text-lg lg:text-xl mb-4">Subscribe</h3>
+            <h3 className="text-xl font-semibold mb-4">Subscribe</h3>
             <p className="text-muted-foreground mb-4">
               Stay updated with our latest news and announcements.
             </p>
@@ -106,23 +96,23 @@ export default function Footer() {
 
         <Separator className="mb-8" />
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm lg:text-base text-muted-foreground">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
           <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2">
             <Link
               to="/privacy"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-foreground transition-standard"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-foreground transition-standard"
             >
               Terms of Service
             </Link>
             <Link
               to="/cookies"
-              className="hover:text-foreground transition-colors"
+              className="hover:text-foreground transition-standard"
             >
               Cookie Policy
             </Link>
@@ -136,13 +126,19 @@ export default function Footer() {
   );
 }
 
-function SocialLink({ href, icon: Icon }) {
+function SocialLink({
+  href,
+  icon: Icon,
+}: {
+  href: string;
+  icon: React.ElementType;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+      className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-standard"
     >
       <Icon className="h-5 w-5" />
       <span className="sr-only">Social Link</span>

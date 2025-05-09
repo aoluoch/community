@@ -7,14 +7,6 @@ export default function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex items-center">
       <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/50 mix-blend-multiply" />
-      <div className="absolute inset-0">
-        <img
-          src="/images/hero.jpg"
-          alt="Community Hero"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
       <div className="container-width container-padding relative z-10 py-20">
         <div className="max-w-[800px] space-y-8">
           <motion.h1

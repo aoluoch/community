@@ -1,0 +1,72 @@
+/* Container utilities */
+.container-width {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
+  @media (min-width: 640px) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Section spacing */
+.section-spacing-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  
+  @media (min-width: 1024px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.section-spacing-md {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  
+  @media (min-width: 1024px) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.section-spacing-lg {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  
+  @media (min-width: 1024px) {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* Text content max-widths */
+.text-content-sm {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-content-md {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-content-lg {
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -19,7 +19,7 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b shadow-sm">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b shadow-sm">
       <nav className="container-width container-padding">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center">
@@ -33,9 +33,10 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "text-base font-medium transition-colors relative py-2 text-foreground hover:text-primary",
+                  "text-base font-medium transition-standard relative py-2",
+                  "text-foreground hover:text-primary",
                   location.pathname === link.href &&
-                    "after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-current"
+                    "after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-primary"
                 )}
               >
                 {link.label}
@@ -44,11 +45,15 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button asChild variant="outline">
-              <Link to="/donate">Donate</Link>
+            <Button asChild variant="outline" size="lg">
+              <Link to="/donate" className="text-base">
+                Donate
+              </Link>
             </Button>
-            <Button asChild>
-              <Link to="/contact">Get Involved</Link>
+            <Button asChild size="lg">
+              <Link to="/contact" className="text-base">
+                Get Involved
+              </Link>
             </Button>
           </div>
 
@@ -77,7 +82,7 @@ export default function Navbar() {
                           to={link.href}
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={cn(
-                            "block py-3 px-4 text-lg font-medium rounded-md transition-colors",
+                            "block py-3 px-4 text-lg font-medium rounded-md transition-standard",
                             location.pathname === link.href
                               ? "bg-primary/10 text-primary"
                               : "hover:bg-accent"
@@ -90,18 +95,25 @@ export default function Navbar() {
                   </ul>
                 </nav>
                 <div className="p-6 border-t space-y-3">
-                  <Button asChild className="w-full" variant="outline">
+                  <Button
+                    asChild
+                    className="w-full"
+                    variant="outline"
+                    size="lg"
+                  >
                     <Link
                       to="/donate"
                       onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-base"
                     >
                       Donate
                     </Link>
                   </Button>
-                  <Button asChild className="w-full">
+                  <Button asChild className="w-full" size="lg">
                     <Link
                       to="/contact"
                       onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-base"
                     >
                       Get Involved
                     </Link>

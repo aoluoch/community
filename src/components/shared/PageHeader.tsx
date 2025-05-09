@@ -17,8 +17,10 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <Section
+      container={false}
       className={cn(
         "relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center overflow-hidden",
+        image ? "text-white" : "bg-accent/50",
         className
       )}
     >
@@ -34,15 +36,12 @@ export default function PageHeader({
       )}
 
       <div className="container-width container-padding relative z-20">
-        <div className="max-w-[800px] mx-auto text-center">
+        <div className="text-content-md text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className={cn(
-              "text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl",
-              image && "text-white"
-            )}
+            className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl"
           >
             {title}
           </motion.h1>
@@ -52,7 +51,7 @@ export default function PageHeader({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className={cn(
-                "mt-4 text-lg md:text-xl lg:text-2xl",
+                "mt-6 text-lg md:text-xl lg:text-2xl",
                 image ? "text-white/90" : "text-muted-foreground"
               )}
             >
