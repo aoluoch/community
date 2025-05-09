@@ -1,204 +1,151 @@
 import { Link } from "react-router-dom";
+import { Grid } from "@/components/ui/grid";
+import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import {
-  Heart,
-  Mail,
-  MapPin,
-  Phone,
-  Facebook,
-  Twitter,
-  Instagram,
-  Youtube,
-  Send,
-} from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Facebook, Twitter, Instagram, Linkedin, Send } from "lucide-react";
+
+const mainLinks = [
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Events", href: "/events" },
+  { label: "Blog", href: "/blog" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact", href: "/contact" },
+];
+
+const programLinks = [
+  { label: "Youth Development", href: "/programs#youth" },
+  { label: "Adult Education", href: "/programs#adult" },
+  { label: "Skills Training", href: "/programs#skills" },
+  { label: "Community Support", href: "/programs#support" },
+  { label: "Mental Health", href: "/programs#health" },
+];
+
+const contactInfo = [
+  { label: "123 Community Street", href: "https://maps.google.com" },
+  { label: "Nairobi, Kenya", href: "https://maps.google.com" },
+  { label: "info@getmorecentre.org", href: "mailto:info@getmorecentre.org" },
+  { label: "+254 712 345 678", href: "tel:+254712345678" },
+];
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-card w-full py-16 md:py-20 lg:py-24">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-16 xl:gap-20">
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <Heart
-                className="h-7 w-7 lg:h-8 lg:w-8 text-primary"
-                fill="currentColor"
-              />
-              <span className="font-bold text-xl lg:text-2xl">
-                GetMore Centre
-              </span>
-            </div>
-            <p className="text-base lg:text-lg text-muted-foreground">
-              Empowering communities through education, support, and
-              opportunity.
+    <footer className="bg-accent">
+      <div className="container-width container-padding py-16 lg:py-24">
+        <Grid cols={4} gap="lg" className="mb-16">
+          <div className="col-span-4 md:col-span-1">
+            <Link to="/" className="block mb-6">
+              <img src="/logo.svg" alt="GetMore Centre" className="h-12" />
+            </Link>
+            <p className="text-muted-foreground text-base lg:text-lg mb-6">
+              Empowering communities through education, support, and sustainable
+              development.
             </p>
-            <div className="flex items-center space-x-4">
-              <Link
-                to="#"
-                className={cn(
-                  "h-10 w-10 lg:h-12 lg:w-12 flex items-center justify-center rounded-full",
-                  "bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground",
-                  "transition-all duration-300 hover:scale-110"
-                )}
-              >
-                <Facebook className="h-5 w-5 lg:h-6 lg:w-6" />
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link
-                to="#"
-                className={cn(
-                  "h-10 w-10 lg:h-12 lg:w-12 flex items-center justify-center rounded-full",
-                  "bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground",
-                  "transition-all duration-300 hover:scale-110"
-                )}
-              >
-                <Twitter className="h-5 w-5 lg:h-6 lg:w-6" />
-                <span className="sr-only">Twitter</span>
-              </Link>
-              <Link
-                to="#"
-                className={cn(
-                  "h-10 w-10 lg:h-12 lg:w-12 flex items-center justify-center rounded-full",
-                  "bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground",
-                  "transition-all duration-300 hover:scale-110"
-                )}
-              >
-                <Instagram className="h-5 w-5 lg:h-6 lg:w-6" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link
-                to="#"
-                className={cn(
-                  "h-10 w-10 lg:h-12 lg:w-12 flex items-center justify-center rounded-full",
-                  "bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground",
-                  "transition-all duration-300 hover:scale-110"
-                )}
-              >
-                <Youtube className="h-5 w-5 lg:h-6 lg:w-6" />
-                <span className="sr-only">YouTube</span>
-              </Link>
+            <div className="flex gap-4">
+              <SocialLink href="#" icon={Facebook} />
+              <SocialLink href="#" icon={Twitter} />
+              <SocialLink href="#" icon={Instagram} />
+              <SocialLink href="#" icon={Linkedin} />
             </div>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-base lg:text-lg font-semibold">Quick Links</h3>
-            <ul className="space-y-3 text-base lg:text-lg">
-              <li>
-                <Link
-                  to="/about"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/programs"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  Programs
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/events"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  Events
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/gallery"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/blog"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-muted-foreground hover:text-foreground transition-colors hover:translate-x-1 inline-block"
-                >
-                  Contact
-                </Link>
-              </li>
+          <div className="col-span-4 md:col-span-1">
+            <h3 className="font-semibold text-lg lg:text-xl mb-4">
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {mainLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-base lg:text-lg font-semibold">Contact Us</h3>
-            <ul className="space-y-4 text-base lg:text-lg">
-              <li className="flex items-start space-x-3">
-                <MapPin className="h-5 w-5 lg:h-6 lg:w-6 mt-0.5 text-muted-foreground" />
-                <span className="text-muted-foreground">
-                  123 Community St, Nairobi, Kenya
-                </span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 lg:h-6 lg:w-6 text-muted-foreground" />
-                <span className="text-muted-foreground">+254 712 345 678</span>
-              </li>
-              <li className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 lg:h-6 lg:w-6 text-muted-foreground" />
-                <span className="text-muted-foreground">
-                  info@getmorecentre.org
-                </span>
-              </li>
+          <div className="col-span-4 md:col-span-1">
+            <h3 className="font-semibold text-lg lg:text-xl mb-4">
+              Our Programs
+            </h3>
+            <ul className="space-y-3">
+              {programLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    to={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-base lg:text-lg font-semibold">Newsletter</h3>
-            <p className="text-base lg:text-lg text-muted-foreground">
-              Stay updated with our latest news and events.
+          <div className="col-span-4 md:col-span-1">
+            <h3 className="font-semibold text-lg lg:text-xl mb-4">Subscribe</h3>
+            <p className="text-muted-foreground mb-4">
+              Stay updated with our latest news and announcements.
             </p>
-            <div className="flex space-x-2">
+            <div className="flex gap-2">
               <Input
                 type="email"
-                placeholder="Your email"
-                className="h-12 lg:h-14 text-base lg:text-lg"
+                placeholder="Enter your email"
+                className="h-12"
               />
-              <Button
-                size="icon"
-                className="h-12 w-12 lg:h-14 lg:w-14 shrink-0"
-              >
-                <Send className="h-5 w-5 lg:h-6 lg:w-6" />
-                <span className="sr-only">Subscribe</span>
+              <Button size="icon" className="h-12 w-12">
+                <Send className="h-5 w-5" />
               </Button>
             </div>
           </div>
-        </div>
+        </Grid>
 
-        <Separator className="my-10 lg:my-16" />
+        <Separator className="mb-8" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between text-base lg:text-lg text-muted-foreground">
-          <p>© {currentYear} GetMore Centre. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="#" className="hover:text-foreground transition-colors">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm lg:text-base text-muted-foreground">
+          <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-2">
+            <Link
+              to="/privacy"
+              className="hover:text-foreground transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link to="#" className="hover:text-foreground transition-colors">
+            <Link
+              to="/terms"
+              className="hover:text-foreground transition-colors"
+            >
               Terms of Service
             </Link>
-            <Link to="#" className="hover:text-foreground transition-colors">
+            <Link
+              to="/cookies"
+              className="hover:text-foreground transition-colors"
+            >
               Cookie Policy
             </Link>
           </div>
+          <p>
+            © {new Date().getFullYear()} GetMore Centre. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+function SocialLink({ href, icon: Icon }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+    >
+      <Icon className="h-5 w-5" />
+      <span className="sr-only">Social Link</span>
+    </a>
   );
 }

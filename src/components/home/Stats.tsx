@@ -1,75 +1,88 @@
 import { motion } from "framer-motion";
-import { stats } from "@/lib/data";
-import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { Grid } from "@/components/ui/grid";
+import CountUp from "react-countup";
+
+const stats = [
+  {
+    id: 1,
+    value: 5000,
+    suffix: "+",
+    label: "Community Members",
+    description: "Active participants in our programs",
+  },
+  {
+    id: 2,
+    value: 50,
+    suffix: "+",
+    label: "Programs",
+    description: "Educational and support initiatives",
+  },
+  {
+    id: 3,
+    value: 100,
+    suffix: "%",
+    label: "Success Rate",
+    description: "Program completion rate",
+  },
+  {
+    id: 4,
+    value: 10,
+    suffix: "K",
+    label: "Volunteer Hours",
+    description: "Contributed by our community",
+  },
+];
 
 export default function Stats() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [counters, setCounters] = useState<string[]>(stats.map(() => "0"));
-
-  useEffect(() => {
-    if (isInView) {
-      const interval = setInterval(() => {
-        let allDone = true;
-
-        setCounters((prev) =>
-          prev.map((value, i) => {
-            const targetValue = stats[i].value;
-
-            // If target is percentage, we'll animate to the number
-            const targetNum = parseInt(targetValue.replace(/\D/g, ""));
-            const currentNum = parseInt(value.replace(/\D/g, ""));
-
-            // If current value reached target, keep it
-            if (currentNum >= targetNum) {
-              return targetValue;
-            }
-
-            allDone = false;
-            const increment = Math.ceil(targetNum / 20); // Adjust speed
-            const newValue = Math.min(currentNum + increment, targetNum);
-
-            // Add % if original had it
-            if (targetValue.includes("%")) {
-              return `${newValue}%`;
-            }
-
-            return `${newValue}${targetValue.includes("+") ? "+" : ""}`;
-          })
-        );
-
-        if (allDone) {
-          clearInterval(interval);
-        }
-      }, 100);
-
-      return () => clearInterval(interval);
-    }
-  }, [isInView]);
-
   return (
-    <section className="w-full py-12 md:py-24 bg-accent">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+    <div className="container-width container-padding">
+      <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 lg:mb-16">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 text-center"
+          className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
         >
-          {stats.map((stat, i) => (
-            <div key={stat.id} className="space-y-3">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
-                {counters[i]}
-              </h3>
-              <p className="text-sm md:text-base lg:text-lg text-muted-foreground font-medium">
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </motion.div>
+          Our Impact in Numbers
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="max-w-[800px] text-muted-foreground text-lg md:text-xl"
+        >
+          Measuring our community's growth and achievements
+        </motion.p>
       </div>
-    </section>
+
+      <Grid cols={4} gap="lg">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="text-center space-y-2"
+          >
+            <div className="text-4xl lg:text-5xl font-bold text-primary">
+              <CountUp
+                end={stat.value}
+                duration={2.5}
+                suffix={stat.suffix}
+                enableScrollSpy={true}
+                scrollSpyOnce={true}
+              />
+            </div>
+            <h3 className="text-xl lg:text-2xl font-semibold">{stat.label}</h3>
+            <p className="text-base lg:text-lg text-muted-foreground">
+              {stat.description}
+            </p>
+          </motion.div>
+        ))}
+      </Grid>
+    </div>
   );
 }

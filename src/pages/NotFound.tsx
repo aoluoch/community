@@ -1,72 +1,55 @@
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { HomeIcon, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import { Home } from "lucide-react";
 
 export default function NotFound() {
-  useEffect(() => {
-    document.title = "Page Not Found - GetMore Centre";
-  }, []);
-
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 xl:py-40 flex items-center min-h-[80vh]">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center justify-center space-y-6 text-center">
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center">
+      <div className="container-width container-padding">
+        <div className="max-w-[600px] mx-auto text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mb-6"
+            className="text-9xl font-bold text-primary"
           >
-            <Search className="h-24 w-24 lg:h-32 lg:w-32 text-primary/20" />
+            404
           </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl font-bold tracking-tighter sm:text-5xl lg:text-6xl xl:text-7xl"
-          >
-            404 - Page Not Found
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-[800px] text-muted-foreground text-lg md:text-xl lg:text-2xl leading-relaxed"
-          >
-            Sorry, the page you are looking for doesn't exist or has been moved.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mt-8"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="space-y-4"
+          >
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Page Not Found
+            </h1>
+            <p className="text-muted-foreground text-lg md:text-xl">
+              Sorry, we couldn't find the page you're looking for. Please check
+              the URL or return to the homepage.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Button
               asChild
               size="lg"
               className="text-base lg:text-lg h-12 lg:h-14 px-8"
             >
-              <Link to="/" className="flex items-center">
-                <HomeIcon className="mr-2 h-5 w-5 lg:h-6 lg:w-6" />
+              <Link to="/" className="flex items-center gap-2">
+                <Home className="h-5 w-5" />
                 Back to Home
               </Link>
-            </Button>
-            <Button
-              variant="outline"
-              asChild
-              size="lg"
-              className="text-base lg:text-lg h-12 lg:h-14 px-8"
-            >
-              <Link to="/contact">Contact Support</Link>
             </Button>
           </motion.div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

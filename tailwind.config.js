@@ -7,6 +7,21 @@ export default {
     './src/**/*.{ts,tsx}',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1rem',
+        sm: '1.5rem',
+        lg: '2rem',
+      },
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1440px',
+      },
+    },
     extend: {
       fontFamily: {
         sans: ['Poppins', 'system-ui', 'sans-serif'],
@@ -79,6 +94,15 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+      },
+      spacing: {
+        'section': '4rem',
+        'section-md': '6rem',
+        'section-lg': '8rem',
       },
     },
   },

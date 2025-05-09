@@ -51,6 +51,9 @@ export type Event = {
   location: string;
   description: string;
   category: string;
+  image: string;
+  capacity?: number;
+  link?: string;
 };
 
 export type GalleryImage = {

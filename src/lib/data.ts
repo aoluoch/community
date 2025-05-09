@@ -186,7 +186,8 @@ export const events = [
     time: "10:00 AM - 2:00 PM",
     location: "GetMore Centre, Main Hall",
     description: "Connect with local employers in the tech industry. Bring your resume and be ready for on-site interviews.",
-    category: "Career"
+    category: "Career",
+    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: 2,
@@ -195,7 +196,8 @@ export const events = [
     time: "6:00 PM - 8:00 PM",
     location: "GetMore Centre, Conference Room",
     description: "Successful female entrepreneurs share their journeys and answer questions about starting a business.",
-    category: "Women's Empowerment"
+    category: "Women's Empowerment",
+    image: "https://images.pexels.com/photos/6321541/pexels-photo-6321541.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: 3,
@@ -204,7 +206,8 @@ export const events = [
     time: "4:00 PM - 6:00 PM",
     location: "GetMore Centre, Computer Lab",
     description: "Introduction to web development for beginners aged 16-25. No prior experience required.",
-    category: "Tech Training"
+    category: "Tech Training",
+    image: "https://images.pexels.com/photos/6231987/pexels-photo-6231987.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: 4,
@@ -213,7 +216,8 @@ export const events = [
     time: "11:00 AM - 3:00 PM",
     location: "Community Park",
     description: "Free health screenings, wellness information, and activities for all ages.",
-    category: "Health"
+    category: "Health",
+    image: "https://images.pexels.com/photos/7551443/pexels-photo-7551443.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   },
   {
     id: 5,
@@ -222,8 +226,9 @@ export const events = [
     time: "5:30 PM - 7:30 PM",
     location: "GetMore Centre, Workshop Room",
     description: "Learn the basics of budgeting, saving, and investing for long-term financial security.",
-    category: "Education"
-  },
+    category: "Education",
+    image: "https://images.pexels.com/photos/6693661/pexels-photo-6693661.jpeg?auto=compress&cs=tinysrgb&w=600"
+  }
 ];
 
 export const galleryImages = [

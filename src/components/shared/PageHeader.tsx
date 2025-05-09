@@ -1,30 +1,75 @@
 import { motion } from "framer-motion";
+import { Section } from "@/components/ui/section";
+import { cn } from "@/lib/utils";
 
 interface PageHeaderProps {
   title: string;
   description?: string;
+  className?: string;
+  image?: string;
 }
 
-export default function PageHeader({ title, description }: PageHeaderProps) {
+export default function PageHeader({
+  title,
+  description,
+  className,
+  image,
+}: PageHeaderProps) {
   return (
-    <section className="w-full py-16 md:py-24 lg:py-32 bg-primary/5">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center justify-center space-y-6"
-        >
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center max-w-[1200px]">
+    <Section
+      className={cn(
+        "relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center overflow-hidden",
+        className
+      )}
+    >
+      {image && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 mix-blend-multiply z-10" />
+          <img
+            src={image}
+            alt={title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </>
+      )}
+
+      <div className="container-width container-padding relative z-20">
+        <div className="max-w-[800px] mx-auto text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className={cn(
+              "text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl",
+              image && "text-white"
+            )}
+          >
             {title}
-          </h1>
+          </motion.h1>
           {description && (
-            <p className="max-w-[900px] text-muted-foreground text-lg md:text-xl lg:text-2xl text-center leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className={cn(
+                "mt-4 text-lg md:text-xl lg:text-2xl",
+                image ? "text-white/90" : "text-muted-foreground"
+              )}
+            >
               {description}
-            </p>
+            </motion.p>
           )}
-        </motion.div>
+        </div>
       </div>
-    </section>
+
+      {image && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
+          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"
+        />
+      )}
+    </Section>
   );
 }

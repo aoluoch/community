@@ -1,121 +1,150 @@
 import { motion } from "framer-motion";
+import { Grid } from "@/components/ui/grid";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Heart,
+  Target,
+  Lightbulb,
+  Users,
+  Infinity,
+  Shield,
+} from "lucide-react";
+
+const values = [
+  {
+    icon: Heart,
+    title: "Compassion",
+    description:
+      "We approach every interaction with empathy and understanding, ensuring everyone feels valued and supported.",
+  },
+  {
+    icon: Target,
+    title: "Impact",
+    description:
+      "Our programs are designed to create measurable, long-lasting positive change in our communities.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Innovation",
+    description:
+      "We continuously seek new and better ways to serve our community's evolving needs.",
+  },
+  {
+    icon: Users,
+    title: "Inclusion",
+    description:
+      "We celebrate diversity and ensure our programs are accessible to all community members.",
+  },
+  {
+    icon: Infinity,
+    title: "Sustainability",
+    description:
+      "Our initiatives focus on creating lasting impact through sustainable practices and solutions.",
+  },
+  {
+    icon: Shield,
+    title: "Integrity",
+    description:
+      "We maintain the highest standards of transparency and ethical conduct in all our operations.",
+  },
+];
 
 export default function Mission() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="space-y-6 lg:space-y-8"
-          >
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">
-                Our Mission
-              </h2>
-              <p className="text-muted-foreground text-lg lg:text-xl">
-                To empower underserved communities by providing access to
-                education, skills training, and support services that create
-                pathways to social and economic independence.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">
-                Our Vision
-              </h2>
-              <p className="text-muted-foreground text-lg lg:text-xl">
-                We envision vibrant, self-sustaining communities where all
-                members have the opportunity to develop their potential and
-                contribute meaningfully to society.
-              </p>
-            </div>
-
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter">
-                Our Values
-              </h2>
-              <ul className="space-y-4 text-muted-foreground text-lg lg:text-xl">
-                <li className="flex items-start">
-                  <span className="font-semibold mr-2">Inclusion:</span>
-                  Creating spaces where everyone belongs, regardless of
-                  background.
-                </li>
-                <li className="flex items-start">
-                  <span className="font-semibold mr-2">Innovation:</span>
-                  Finding creative solutions to complex community challenges.
-                </li>
-                <li className="flex items-start">
-                  <span className="font-semibold mr-2">Impact:</span>
-                  Measurable, sustainable change that transforms lives.
-                </li>
-                <li className="flex items-start">
-                  <span className="font-semibold mr-2">Integrity:</span>
-                  Upholding the highest standards of honesty and accountability.
-                </li>
-              </ul>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="rounded-xl overflow-hidden aspect-[4/3] lg:aspect-[16/10]"
-          >
-            <img
-              src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt="Community members collaborating"
-              className="w-full h-full object-cover rounded-xl shadow-lg"
-            />
-          </motion.div>
-        </div>
-
-        <motion.div
+    <div className="container-width container-padding">
+      <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12 lg:mb-16">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
+        >
+          Our Mission & Values
+        </motion.h2>
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-24 lg:mt-32 bg-primary/10 p-8 lg:p-12 rounded-xl"
+          className="max-w-[800px] text-muted-foreground text-lg md:text-xl"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-8 lg:mb-12 text-center">
-            Our Impact
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            <div className="space-y-3">
-              <h3 className="text-xl lg:text-2xl font-semibold">
-                Youth Development
-              </h3>
-              <p className="text-muted-foreground text-lg">
-                500+ young adults trained in technology skills, with 75%
-                securing employment or starting businesses within six months.
-              </p>
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-xl lg:text-2xl font-semibold">
-                Women's Empowerment
-              </h3>
-              <p className="text-muted-foreground text-lg">
-                Supported 300+ women with entrepreneurship training, leadership
-                development, and microfinance connections.
-              </p>
-            </div>
-            <div className="space-y-3">
-              <h3 className="text-xl lg:text-2xl font-semibold">
-                Community Support
-              </h3>
-              <p className="text-muted-foreground text-lg">
-                Provided mental health resources, family services, and social
-                support to 1000+ community members since founding.
-              </p>
-            </div>
-          </div>
-        </motion.div>
+          Committed to empowering communities through education, support, and
+          sustainable development
+        </motion.p>
       </div>
-    </section>
+
+      <div className="space-y-16">
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-[800px] mx-auto text-center space-y-6"
+          >
+            <h3 className="text-2xl lg:text-3xl font-bold">Our Mission</h3>
+            <p className="text-muted-foreground text-lg lg:text-xl leading-relaxed">
+              To create positive change by providing accessible education,
+              fostering community engagement, and developing sustainable
+              solutions that address the unique challenges faced by our
+              communities.
+            </p>
+          </motion.div>
+        </div>
+
+        <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-8 lg:mb-12"
+          >
+            <h3 className="text-2xl lg:text-3xl font-bold">Our Values</h3>
+          </motion.div>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          >
+            <Grid cols={3} gap="lg">
+              {values.map((value) => (
+                <motion.div key={value.title} variants={item}>
+                  <Card className="h-full border-none shadow-md hover:shadow-xl transition-standard">
+                    <CardContent className="p-6 lg:p-8 flex flex-col items-center text-center">
+                      <div className="rounded-full bg-primary/10 p-4 mb-6">
+                        <value.icon className="h-8 w-8 text-primary" />
+                      </div>
+                      <h4 className="text-xl lg:text-2xl font-bold mb-4">
+                        {value.title}
+                      </h4>
+                      <p className="text-muted-foreground text-base lg:text-lg">
+                        {value.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </Grid>
+          </motion.div>
+        </div>
+      </div>
+    </div>
   );
 }

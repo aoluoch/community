@@ -1,17 +1,32 @@
-import { Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import AnnouncementBar from "@/components/home/AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import BackToTop from "../shared/BackToTop";
+import BackToTop from "@/components/shared/BackToTop";
 
 export default function MainLayout() {
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
+      <AnnouncementBar />
       <Navbar />
-      <main className="flex-1 pt-16 lg:pt-20">
-        <Outlet />
-      </main>
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={location.pathname}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3 }}
+          className={isHomePage ? "" : "pt-16"}
+        >
+          <Outlet />
+        </motion.main>
+      </AnimatePresence>
       <Footer />
       <BackToTop />
-    </div>
+    </>
   );
 }

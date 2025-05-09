@@ -1,8 +1,8 @@
-import { X } from "lucide-react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function AnnouncementBar() {
   const [isVisible, setIsVisible] = useState(true);
@@ -11,39 +11,35 @@ export default function AnnouncementBar() {
 
   return (
     <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          className="bg-primary text-primary-foreground w-full py-3 lg:py-4"
-        >
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <span className="font-medium text-sm lg:text-base">
-                New Tech Training Program Starting June 15th!
-              </span>
-              <Button
-                variant="outline"
-                size="sm"
-                asChild
-                className="text-sm border-primary-foreground/20 hover:bg-primary-foreground/10 hover:text-primary-foreground h-8 lg:h-9 px-3 lg:px-4"
+      <motion.div
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        className="bg-primary text-primary-foreground"
+      >
+        <div className="container-width container-padding">
+          <div className="flex items-center justify-between py-2 text-sm lg:text-base">
+            <div className="flex items-center gap-2">
+              <span className="font-medium">New Program Starting Soon:</span>
+              <Link
+                to="/programs"
+                className="underline-offset-4 hover:underline"
               >
-                <Link to="/events">Learn More</Link>
-              </Button>
+                Learn more about our Youth Leadership Workshop
+              </Link>
             </div>
             <Button
               variant="ghost"
-              size="sm"
+              size="icon"
+              className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/20"
               onClick={() => setIsVisible(false)}
-              className="h-7 w-7 lg:h-8 lg:w-8 p-0 rounded-full hover:bg-primary-foreground/20"
             >
-              <X className="h-4 w-4 lg:h-5 lg:w-5" />
-              <span className="sr-only">Close</span>
+              <X className="h-4 w-4" />
+              <span className="sr-only">Close announcement</span>
             </Button>
           </div>
-        </motion.div>
-      )}
+        </div>
+      </motion.div>
     </AnimatePresence>
   );
 }
