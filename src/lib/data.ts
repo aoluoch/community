@@ -4,18 +4,21 @@ export const services = [
     title: "Youth Skills Training",
     description: "Tech literacy, vocational skills, and entrepreneurship programs tailored for young adults aged 16-25.",
     icon: "GraduationCap",
+    link: "/programs"
   },
   {
     id: 2,
     title: "Women's Empowerment",
     description: "Leadership development, financial literacy, and career advancement workshops for women in the community.",
     icon: "HeartHandshake",
+    link: "/programs"
   },
   {
     id: 3,
     title: "Community Support",
     description: "Mental health resources, family services, and social integration programs for underprivileged groups.",
     icon: "Users",
+    link: "/programs"
   },
 ];
 

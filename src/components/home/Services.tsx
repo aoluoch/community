@@ -2,9 +2,15 @@ import { motion } from "framer-motion";
 import { Grid } from "@/components/ui/grid";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap, HeartHandshake, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "@/lib/data";
+
+const iconMap = {
+  GraduationCap,
+  HeartHandshake,
+  Users,
+};
 
 export default function Services() {
   const container = {
@@ -50,33 +56,36 @@ export default function Services() {
         viewport={{ once: true }}
       >
         <Grid cols={3} gap="lg">
-          {services.map((service) => (
-            <motion.div key={service.id} variants={item}>
-              <Card className="h-full border-none shadow-md hover:shadow-xl transition-standard">
-                <CardContent className="p-6 lg:p-8 flex flex-col h-full">
-                  <div className="rounded-full bg-primary/10 p-4 w-fit mb-6">
-                    <service.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
-                    {service.title}
-                  </h3>
-                  <p className="flex-1 text-base lg:text-lg text-muted-foreground mb-6">
-                    {service.description}
-                  </p>
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="w-fit text-primary hover:text-primary/80"
-                  >
-                    <Link to={service.link} className="flex items-center gap-2">
-                      Learn More
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          {services.map((service) => {
+            const Icon = iconMap[service.icon as keyof typeof iconMap];
+            return (
+              <motion.div key={service.id} variants={item}>
+                <Card className="h-full border-none shadow-md hover:shadow-xl transition-standard">
+                  <CardContent className="p-6 lg:p-8 flex flex-col h-full">
+                    <div className="rounded-full bg-primary/10 p-4 w-fit mb-6">
+                      <Icon className="h-8 w-8 text-primary" />
+                    </div>
+                    <h3 className="text-xl lg:text-2xl font-bold mb-4">
+                      {service.title}
+                    </h3>
+                    <p className="flex-1 text-base lg:text-lg text-muted-foreground mb-6">
+                      {service.description}
+                    </p>
+                    <Button
+                      asChild
+                      variant="ghost"
+                      className="w-fit text-primary hover:text-primary/80"
+                    >
+                      <Link to="/programs" className="flex items-center gap-2">
+                        Learn More
+                        <ArrowRight className="h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </Grid>
       </motion.div>
     </div>
