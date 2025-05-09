@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -11,50 +11,50 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import { useToast } from '@/hooks/use-toast';
-import { Loader2, CreditCard, Calendar, Lock } from 'lucide-react';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/use-toast";
+import { Loader2, CreditCard, Calendar, Lock } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
-    message: 'Full name must be at least 2 characters.',
+    message: "Full name must be at least 2 characters.",
   }),
   email: z.string().email({
-    message: 'Please enter a valid email address.',
+    message: "Please enter a valid email address.",
   }),
   address: z.string().min(10, {
-    message: 'Please enter your full address.',
+    message: "Please enter your full address.",
   }),
   cardNumber: z.string().min(16, {
-    message: 'Please enter a valid card number.',
+    message: "Please enter a valid card number.",
   }),
   expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, {
-    message: 'Please enter a valid expiry date (MM/YY).',
+    message: "Please enter a valid expiry date (MM/YY).",
   }),
   cvv: z.string().min(3, {
-    message: 'Please enter a valid CVV/CVC.',
+    message: "Please enter a valid CVV/CVC.",
   }),
   isRecurring: z.boolean().default(false),
-  agreeTerms: z.boolean().refine(val => val === true, {
-    message: 'You must agree to the terms and privacy policy.',
+  agreeTerms: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the terms and privacy policy.",
   }),
 });
 
 export default function DonationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      fullName: '',
-      email: '',
-      address: '',
-      cardNumber: '',
-      expiryDate: '',
-      cvv: '',
+      fullName: "",
+      email: "",
+      address: "",
+      cardNumber: "",
+      expiryDate: "",
+      cvv: "",
       isRecurring: false,
       agreeTerms: false,
     },
@@ -79,24 +79,32 @@ export default function DonationForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full"
+      className="w-full max-w-4xl mx-auto"
     >
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Personal Information</h3>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+          <div className="space-y-6 lg:space-y-8">
+            <h3 className="text-xl lg:text-2xl font-semibold">
+              Personal Information
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               <FormField
                 control={form.control}
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
+                      Full Name
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="Your full name" {...field} />
+                      <Input
+                        placeholder="Your full name"
+                        className="h-12 text-base lg:text-lg"
+                        {...field}
+                      />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-base" />
                   </FormItem>
                 )}
               />
@@ -105,65 +113,91 @@ export default function DonationForm() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
+                      Email
+                    </FormLabel>
                     <FormControl>
-                      <Input placeholder="Your email" {...field} />
+                      <Input
+                        placeholder="Your email"
+                        className="h-12 text-base lg:text-lg"
+                        {...field}
+                      />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-base" />
                   </FormItem>
                 )}
               />
             </div>
-            
+
             <FormField
               control={form.control}
               name="address"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel className="text-base lg:text-lg">
+                    Address
+                  </FormLabel>
                   <FormControl>
-                    <Input placeholder="Your mailing address" {...field} />
+                    <Input
+                      placeholder="Your mailing address"
+                      className="h-12 text-base lg:text-lg"
+                      {...field}
+                    />
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-base" />
                 </FormItem>
               )}
             />
           </div>
-          
-          <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Payment Information</h3>
-            
+
+          <div className="space-y-6 lg:space-y-8">
+            <h3 className="text-xl lg:text-2xl font-semibold">
+              Payment Information
+            </h3>
+
             <FormField
               control={form.control}
               name="cardNumber"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Card Number</FormLabel>
+                  <FormLabel className="text-base lg:text-lg">
+                    Card Number
+                  </FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Input placeholder="1234 5678 9012 3456" {...field} />
-                      <CreditCard className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+                      <Input
+                        placeholder="1234 5678 9012 3456"
+                        className="h-12 text-base lg:text-lg"
+                        {...field}
+                      />
+                      <CreditCard className="absolute right-4 top-3.5 h-5 w-5 text-muted-foreground" />
                     </div>
                   </FormControl>
-                  <FormMessage />
+                  <FormMessage className="text-base" />
                 </FormItem>
               )}
             />
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               <FormField
                 control={form.control}
                 name="expiryDate"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Expiry Date</FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
+                      Expiry Date
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input placeholder="MM/YY" {...field} />
-                        <Calendar className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="MM/YY"
+                          className="h-12 text-base lg:text-lg"
+                          {...field}
+                        />
+                        <Calendar className="absolute right-4 top-3.5 h-5 w-5 text-muted-foreground" />
                       </div>
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-base" />
                   </FormItem>
                 )}
               />
@@ -172,21 +206,27 @@ export default function DonationForm() {
                 name="cvv"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>CVV/CVC</FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
+                      CVV/CVC
+                    </FormLabel>
                     <FormControl>
                       <div className="relative">
-                        <Input placeholder="123" {...field} />
-                        <Lock className="absolute right-3 top-3 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="123"
+                          className="h-12 text-base lg:text-lg"
+                          {...field}
+                        />
+                        <Lock className="absolute right-4 top-3.5 h-5 w-5 text-muted-foreground" />
                       </div>
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-base" />
                   </FormItem>
                 )}
               />
             </div>
           </div>
-          
-          <div className="space-y-3">
+
+          <div className="space-y-4">
             <FormField
               control={form.control}
               name="isRecurring"
@@ -194,17 +234,20 @@ export default function DonationForm() {
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
+                      className="h-5 w-5 lg:h-6 lg:w-6"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>Make this a monthly recurring donation</FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
+                      Make this a monthly recurring donation
+                    </FormLabel>
                   </div>
                 </FormItem>
               )}
             />
-            
+
             <FormField
               control={form.control}
               name="agreeTerms"
@@ -212,12 +255,13 @@ export default function DonationForm() {
                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
                   <FormControl>
                     <Checkbox
+                      className="h-5 w-5 lg:h-6 lg:w-6"
                       checked={field.value}
                       onCheckedChange={field.onChange}
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel>
+                    <FormLabel className="text-base lg:text-lg">
                       I agree to the terms and privacy policy
                     </FormLabel>
                   </div>
@@ -225,15 +269,20 @@ export default function DonationForm() {
               )}
             />
           </div>
-          
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
+
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full text-base lg:text-lg h-12 lg:h-14"
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 Processing...
               </>
             ) : (
-              'Complete Donation'
+              "Complete Donation"
             )}
           </Button>
         </form>

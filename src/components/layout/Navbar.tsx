@@ -79,7 +79,7 @@ export default function Navbar() {
           : "bg-transparent"
       )}
     >
-      <div className="container px-4 md:px-6 mx-auto">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
@@ -89,14 +89,14 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-1">
+          <nav className="hidden md:flex items-center gap-2 lg:gap-4">
             {navLinks.map((link) => (
               <NavLink
                 key={link.path}
                 to={link.path}
                 className={({ isActive }) =>
                   cn(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    "px-3 py-2 rounded-md text-sm lg:text-base font-medium transition-colors whitespace-nowrap",
                     isActive
                       ? "text-primary bg-primary/10"
                       : "text-foreground/70 hover:text-foreground hover:bg-accent"
@@ -106,7 +106,7 @@ export default function Navbar() {
                 {link.label}
               </NavLink>
             ))}
-            <Button asChild variant="default" className="ml-4">
+            <Button asChild variant="default" className="ml-2 lg:ml-4">
               <Link to="/donate" className="flex items-center">
                 <Heart className="w-4 h-4 mr-2" />
                 Donate

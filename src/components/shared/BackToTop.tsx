@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { ArrowUpIcon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowUpIcon } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,14 +12,14 @@ export default function BackToTop() {
       window.scrollY > 300 ? setIsVisible(true) : setIsVisible(false);
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -30,15 +30,15 @@ export default function BackToTop() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          className="fixed bottom-8 right-8 z-50"
+          className="fixed bottom-8 right-8 lg:bottom-12 lg:right-12 z-50"
         >
           <Button
             onClick={scrollToTop}
             size="icon"
-            className="h-10 w-10 rounded-full shadow-lg bg-primary"
+            className="h-12 w-12 lg:h-14 lg:w-14 rounded-full shadow-lg hover:shadow-xl bg-primary hover:bg-primary/90 transition-all duration-300"
             aria-label="Back to top"
           >
-            <ArrowUpIcon className="h-5 w-5" />
+            <ArrowUpIcon className="h-6 w-6 lg:h-7 lg:w-7" />
           </Button>
         </motion.div>
       )}

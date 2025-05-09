@@ -1,45 +1,47 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { GalleryImage } from '@/types';
-import { 
-  Dialog, 
-  DialogContent, 
-  DialogTitle 
-} from '@/components/ui/dialog';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { GalleryImage } from "@/types";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface GalleryGridProps {
   images: GalleryImage[];
   selectedCategory: string;
 }
 
-export default function GalleryGrid({ images, selectedCategory }: GalleryGridProps) {
+export default function GalleryGrid({
+  images,
+  selectedCategory,
+}: GalleryGridProps) {
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-  const filteredImages = selectedCategory === 'All' 
-    ? images 
-    : images.filter(img => img.category === selectedCategory);
-  
+  const filteredImages =
+    selectedCategory === "All"
+      ? images
+      : images.filter((img) => img.category === selectedCategory);
+
   const openLightbox = (image: GalleryImage) => {
     setSelectedImage(image);
-    setSelectedIndex(filteredImages.findIndex(img => img.id === image.id));
+    setSelectedIndex(filteredImages.findIndex((img) => img.id === image.id));
   };
-  
+
   const closeLightbox = () => {
     setSelectedImage(null);
   };
-  
+
   const goToPrevious = () => {
-    const newIndex = selectedIndex === 0 ? filteredImages.length - 1 : selectedIndex - 1;
+    const newIndex =
+      selectedIndex === 0 ? filteredImages.length - 1 : selectedIndex - 1;
     setSelectedIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
   };
-  
+
   const goToNext = () => {
-    const newIndex = selectedIndex === filteredImages.length - 1 ? 0 : selectedIndex + 1;
+    const newIndex =
+      selectedIndex === filteredImages.length - 1 ? 0 : selectedIndex + 1;
     setSelectedIndex(newIndex);
     setSelectedImage(filteredImages[newIndex]);
   };
@@ -61,11 +63,11 @@ export default function GalleryGrid({ images, selectedCategory }: GalleryGridPro
 
   return (
     <>
-      <motion.div 
+      <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6"
       >
         <AnimatePresence>
           {filteredImages.map((image) => (
@@ -74,17 +76,23 @@ export default function GalleryGrid({ images, selectedCategory }: GalleryGridPro
               layout
               variants={item}
               exit={{ opacity: 0, scale: 0.8 }}
-              className="relative overflow-hidden rounded-lg aspect-square cursor-pointer"
+              className="relative overflow-hidden rounded-lg aspect-square cursor-pointer group"
               onClick={() => openLightbox(image)}
             >
-              <img 
-                src={image.src} 
+              <img
+                src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <div className="p-3 w-full">
-                  <Badge variant="secondary">{image.category}</Badge>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                <div className="p-4 w-full">
+                  <Badge variant="secondary" className="text-base">
+                    {image.category}
+                  </Badge>
+                  <p className="text-white mt-2 text-base lg:text-lg font-medium line-clamp-2">
+                    {image.alt}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -94,36 +102,36 @@ export default function GalleryGrid({ images, selectedCategory }: GalleryGridPro
 
       {/* Lightbox */}
       <Dialog open={!!selectedImage} onOpenChange={closeLightbox}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden bg-background/95 backdrop-blur-sm">
+        <DialogContent className="max-w-[1200px] p-0 overflow-hidden bg-background/95 backdrop-blur-sm">
           <div className="relative">
             <div className="p-4 absolute top-0 right-0 z-10">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90"
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90 h-10 w-10"
                 onClick={closeLightbox}
               >
                 <X className="h-5 w-5" />
                 <span className="sr-only">Close</span>
               </Button>
             </div>
-            
+
             {filteredImages.length > 1 && (
               <>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90"
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90 h-12 w-12"
                   onClick={goToPrevious}
                 >
                   <ChevronLeft className="h-6 w-6" />
                   <span className="sr-only">Previous</span>
                 </Button>
-                
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90"
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/70 backdrop-blur-sm hover:bg-background/90 h-12 w-12"
                   onClick={goToNext}
                 >
                   <ChevronRight className="h-6 w-6" />
@@ -131,22 +139,28 @@ export default function GalleryGrid({ images, selectedCategory }: GalleryGridPro
                 </Button>
               </>
             )}
-            
+
             <div className="overflow-hidden">
               {selectedImage && (
-                <img 
-                  src={selectedImage.src} 
+                <img
+                  src={selectedImage.src}
                   alt={selectedImage.alt}
-                  className="w-full max-h-[80vh] object-contain"
+                  className="w-full max-h-[85vh] object-contain"
                 />
               )}
             </div>
-            
+
             {selectedImage && (
-              <div className="p-4 bg-background">
-                <DialogTitle className="text-lg font-medium">{selectedImage.alt}</DialogTitle>
-                <div className="mt-2">
-                  <Badge>{selectedImage.category}</Badge>
+              <div className="p-6 lg:p-8 bg-background">
+                <DialogTitle className="text-xl lg:text-2xl font-medium mb-3">
+                  {selectedImage.alt}
+                </DialogTitle>
+                <div className="flex items-center gap-3">
+                  <Badge className="text-base">{selectedImage.category}</Badge>
+                  <span className="text-muted-foreground text-base">•</span>
+                  <span className="text-muted-foreground text-base">
+                    Click image to zoom
+                  </span>
                 </div>
               </div>
             )}
