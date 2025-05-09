@@ -7,7 +7,10 @@ import DonationForm from "@/components/donate/DonationForm";
 import { donationTiers } from "@/lib/data";
 
 export default function Donate() {
-  const [selectedTier, setSelectedTier] = useState<number | null>(null);
+  const [selectedTierId, setSelectedTierId] = useState<number | null>(null);
+  const selectedTier = selectedTierId
+    ? donationTiers.find((tier) => tier.id === selectedTierId)
+    : null;
 
   return (
     <>
@@ -23,14 +26,14 @@ export default function Donate() {
             <DonationTier
               key={tier.id}
               tier={tier}
-              isSelected={selectedTier === tier.id}
-              onSelect={() => setSelectedTier(tier.id)}
+              isSelected={selectedTierId === tier.id}
+              onSelect={() => setSelectedTierId(tier.id)}
             />
           ))}
         </Grid>
 
         <div className="max-w-[800px] mx-auto">
-          <DonationForm selectedTier={selectedTier} />
+          {selectedTier && <DonationForm selectedTier={selectedTier} />}
         </div>
       </Section>
     </>
