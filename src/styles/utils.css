@@ -11,20 +11,25 @@
   padding-right: 1rem;
   
   @media (min-width: 640px) {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
   
   @media (min-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
 /* Section spacing */
 .section-spacing-sm {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  
+  @media (min-width: 640px) {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
   
   @media (min-width: 1024px) {
     padding-top: 4rem;
@@ -33,8 +38,13 @@
 }
 
 .section-spacing-md {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  
+  @media (min-width: 640px) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
   
   @media (min-width: 1024px) {
     padding-top: 6rem;
@@ -43,8 +53,13 @@
 }
 
 .section-spacing-lg {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  
+  @media (min-width: 640px) {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
   
   @media (min-width: 1024px) {
     padding-top: 8rem;
@@ -54,19 +69,38 @@
 
 /* Text content max-widths */
 .text-content-sm {
-  max-width: 600px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  
+  @media (min-width: 640px) {
+    max-width: 600px;
+  }
 }
 
 .text-content-md {
-  max-width: 800px;
+  max-width: 90%;
   margin-left: auto;
   margin-right: auto;
+  
+  @media (min-width: 640px) {
+    max-width: 800px;
+  }
 }
 
 .text-content-lg {
-  max-width: 1024px;
+  max-width: 95%;
   margin-left: auto;
   margin-right: auto;
+  
+  @media (min-width: 640px) {
+    max-width: 1024px;
+  }
+}
+
+/* Common transitions */
+.transition-standard {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

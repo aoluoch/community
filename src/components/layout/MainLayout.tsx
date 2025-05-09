@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import BackToTop from "@/components/shared/BackToTop";
+import { cn } from "@/lib/utils";
 
 export default function MainLayout() {
   const location = useLocation();
@@ -18,7 +19,10 @@ export default function MainLayout() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
-          className={`flex-1 ${isHomePage ? "" : "pt-16"}`}
+          className={cn(
+            "flex-1",
+            isHomePage ? "" : "pt-16 md:pt-20" // Adjusted padding for different screen sizes
+          )}
         >
           <Outlet />
         </motion.main>
