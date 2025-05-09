@@ -15,7 +15,7 @@ export default function AnnouncementBar() {
         initial={{ height: 0, opacity: 0 }}
         animate={{ height: "auto", opacity: 1 }}
         exit={{ height: 0, opacity: 0 }}
-        className="bg-primary text-primary-foreground"
+        className="bg-primary text-primary-foreground relative z-50"
       >
         <div className="container-width container-padding">
           <div className="flex items-center justify-between py-2 text-sm lg:text-base">

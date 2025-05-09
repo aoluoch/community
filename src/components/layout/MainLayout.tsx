@@ -1,6 +1,5 @@
 import { useLocation, Outlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import AnnouncementBar from "@/components/home/AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import BackToTop from "@/components/shared/BackToTop";
@@ -11,7 +10,6 @@ export default function MainLayout() {
 
   return (
     <>
-      <AnnouncementBar />
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.main

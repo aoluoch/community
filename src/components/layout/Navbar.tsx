@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -16,28 +15,11 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b shadow-sm"
-          : "bg-transparent"
-      )}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b shadow-sm">
       <nav className="container-width container-padding">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center">
@@ -51,10 +33,7 @@ export default function Navbar() {
                 key={link.href}
                 to={link.href}
                 className={cn(
-                  "text-base font-medium transition-colors relative py-2",
-                  isScrolled
-                    ? "text-foreground hover:text-primary"
-                    : "text-white hover:text-white/80",
+                  "text-base font-medium transition-colors relative py-2 text-foreground hover:text-primary",
                   location.pathname === link.href &&
                     "after:absolute after:left-0 after:right-0 after:bottom-0 after:h-0.5 after:bg-current"
                 )}
@@ -65,23 +44,10 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button
-              asChild
-              variant={isScrolled ? "outline" : "secondary"}
-              className={cn(
-                "transition-colors",
-                !isScrolled && "bg-white/10 hover:bg-white/20 border-white/30"
-              )}
-            >
+            <Button asChild variant="outline">
               <Link to="/donate">Donate</Link>
             </Button>
-            <Button
-              asChild
-              variant={isScrolled ? "default" : "secondary"}
-              className={cn(
-                !isScrolled && "bg-white text-primary hover:bg-white/90"
-              )}
-            >
+            <Button asChild>
               <Link to="/contact">Get Involved</Link>
             </Button>
           </div>
@@ -92,12 +58,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className={cn(
-                  "transition-colors",
-                  isScrolled
-                    ? "text-foreground hover:bg-accent"
-                    : "text-white hover:bg-white/10"
-                )}
+                className="text-foreground hover:bg-accent"
               >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Toggle menu</span>

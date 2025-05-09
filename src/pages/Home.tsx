@@ -1,6 +1,4 @@
 import { Section } from "@/components/ui/section";
-import { Grid } from "@/components/ui/grid";
-import AnnouncementBar from "@/components/home/AnnouncementBar";
 import Hero from "@/components/home/Hero";
 import Services from "@/components/home/Services";
 import Stats from "@/components/home/Stats";
@@ -10,7 +8,6 @@ import Partners from "@/components/home/Partners";
 export default function Home() {
   return (
     <>
-      <AnnouncementBar />
       <Hero />
 
       <Section>

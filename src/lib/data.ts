@@ -64,6 +64,7 @@ export const team = [
     role: "Executive Director",
     bio: "Grace founded GetMore Centre after 15 years in nonprofit management. She's passionate about creating educational opportunities for underserved communities.",
     image: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=600",
+    specialties: ["Strategic Planning", "Nonprofit Management", "Community Development"]
   },
   {
     id: 2,
@@ -71,6 +72,7 @@ export const team = [
     role: "Programs Director",
     bio: "With a background in education policy, James develops our curriculum and oversees program implementation across all GetMore initiatives.",
     image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
+    specialties: ["Curriculum Development", "Program Evaluation", "Education Policy"]
   },
   {
     id: 3,
@@ -78,6 +80,7 @@ export const team = [
     role: "Community Outreach",
     bio: "Aisha builds partnerships with local businesses, schools, and government agencies to expand GetMore's community impact.",
     image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=600",
+    specialties: ["Community Engagement", "Partnership Development", "Event Coordination"]
   },
   {
     id: 4,
@@ -85,6 +88,7 @@ export const team = [
     role: "Tech Training Lead",
     bio: "A former software engineer, Carlos now leads our digital literacy and coding programs with a focus on practical job skills.",
     image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=600",
+    specialties: ["Software Development", "Technical Training", "Mentorship"]
   },
 ];
 

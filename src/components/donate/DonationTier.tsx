@@ -1,22 +1,25 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Check } from "lucide-react";
 
 interface DonationTierProps {
   tier: {
-    id: string;
-    name: string;
+    id: number;
     amount: number;
+    title: string;
     description: string;
-    benefits: string[];
-    popular?: boolean;
+    perks: string[];
   };
-  onSelect: (amount: number) => void;
+  isSelected?: boolean;
+  onSelect: (tier: any) => void;
 }
 
-export default function DonationTier({ tier, onSelect }: DonationTierProps) {
+export default function DonationTier({
+  tier,
+  isSelected,
+  onSelect,
+}: DonationTierProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -25,22 +28,15 @@ export default function DonationTier({ tier, onSelect }: DonationTierProps) {
       transition={{ duration: 0.5 }}
     >
       <Card
-        className={`relative h-full border-none shadow-md hover:shadow-xl transition-standard ${
-          tier.popular ? "bg-primary/5" : ""
+        className={`relative h-full border-2 transition-standard ${
+          isSelected
+            ? "border-primary shadow-lg"
+            : "border-transparent shadow-md hover:shadow-xl"
         }`}
       >
-        {tier.popular && (
-          <Badge
-            variant="default"
-            className="absolute -top-3 left-1/2 -translate-x-1/2"
-          >
-            Most Popular
-          </Badge>
-        )}
-
         <CardContent className="p-6 lg:p-8 flex flex-col h-full">
           <div className="mb-6">
-            <h3 className="text-xl lg:text-2xl font-bold mb-2">{tier.name}</h3>
+            <h3 className="text-xl lg:text-2xl font-bold mb-2">{tier.title}</h3>
             <p className="text-muted-foreground text-base lg:text-lg mb-4">
               {tier.description}
             </p>
@@ -54,10 +50,10 @@ export default function DonationTier({ tier, onSelect }: DonationTierProps) {
 
           <div className="flex-1 mb-6">
             <ul className="space-y-3">
-              {tier.benefits.map((benefit) => (
-                <li key={benefit} className="flex items-start gap-3">
+              {tier.perks.map((perk) => (
+                <li key={perk} className="flex items-start gap-3">
                   <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground">{benefit}</span>
+                  <span className="text-muted-foreground">{perk}</span>
                 </li>
               ))}
             </ul>
@@ -65,11 +61,11 @@ export default function DonationTier({ tier, onSelect }: DonationTierProps) {
 
           <Button
             size="lg"
-            variant={tier.popular ? "default" : "outline"}
+            variant={isSelected ? "default" : "outline"}
             className="w-full text-base lg:text-lg h-12 lg:h-14"
-            onClick={() => onSelect(tier.amount)}
+            onClick={() => onSelect(tier)}
           >
-            Select {tier.name}
+            {isSelected ? "Selected" : `Select ${tier.title}`}
           </Button>
         </CardContent>
       </Card>
