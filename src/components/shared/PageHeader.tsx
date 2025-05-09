@@ -1,39 +1,32 @@
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/section";
 import { cn } from "@/lib/utils";
+import HeaderCarousel from "./HeaderCarousel";
+import { headerImages } from "@/lib/headerImages";
 
 interface PageHeaderProps {
   title: string;
   description?: string;
   className?: string;
-  image?: string;
+  page: keyof typeof headerImages;
 }
 
 export default function PageHeader({
   title,
   description,
   className,
-  image,
+  page,
 }: PageHeaderProps) {
   return (
     <Section
       container={false}
       className={cn(
-        "relative min-h-[400px] lg:min-h-[500px] flex items-center justify-center overflow-hidden",
-        image ? "text-white" : "bg-accent/50",
+        "relative min-h-[500px] lg:min-h-[600px] flex items-center justify-center overflow-hidden",
+        "text-white mt-[-64px] pt-[64px]", // Offset for navbar and add padding
         className
       )}
     >
-      {image && (
-        <>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/50 mix-blend-multiply z-10" />
-          <img
-            src={image}
-            alt={title}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </>
-      )}
+      <HeaderCarousel page={page} />
 
       <div className="container-width container-padding relative z-20">
         <div className="text-content-md text-center">
@@ -45,15 +38,13 @@ export default function PageHeader({
           >
             {title}
           </motion.h1>
+
           {description && (
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className={cn(
-                "mt-6 text-lg md:text-xl lg:text-2xl",
-                image ? "text-white/90" : "text-muted-foreground"
-              )}
+              className="mt-6 text-lg md:text-xl lg:text-2xl text-white/90"
             >
               {description}
             </motion.p>
@@ -61,14 +52,12 @@ export default function PageHeader({
         </div>
       </div>
 
-      {image && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6 }}
-          className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"
-        />
-      )}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.6 }}
+        className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"
+      />
     </Section>
   );
 }

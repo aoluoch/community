@@ -36,6 +36,7 @@ export default function Events() {
   return (
     <>
       <PageHeader
+        page="events"
         title="Our Events"
         description="Join us at our upcoming events and activities."
       />

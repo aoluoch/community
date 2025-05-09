@@ -7,30 +7,29 @@ import DonationForm from "@/components/donate/DonationForm";
 import { donationTiers } from "@/lib/data";
 
 export default function Donate() {
-  const [selectedTier, setSelectedTier] = useState(donationTiers[1]);
+  const [selectedTier, setSelectedTier] = useState<number | null>(null);
 
   return (
     <>
       <PageHeader
+        page="donate"
         title="Support Our Mission"
-        description="Your contribution helps us create lasting impact in our community."
+        description="Your generosity helps us continue our work in the community."
       />
 
       <Section>
-        <div className="max-w-3xl mx-auto mb-16">
-          <Grid cols={3} gap="lg">
-            {donationTiers.map((tier) => (
-              <DonationTier
-                key={tier.id}
-                tier={tier}
-                isSelected={selectedTier?.id === tier.id}
-                onSelect={setSelectedTier}
-              />
-            ))}
-          </Grid>
-        </div>
+        <Grid cols={3} gap="lg" className="mb-16">
+          {donationTiers.map((tier) => (
+            <DonationTier
+              key={tier.id}
+              tier={tier}
+              isSelected={selectedTier === tier.id}
+              onSelect={() => setSelectedTier(tier.id)}
+            />
+          ))}
+        </Grid>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-[800px] mx-auto">
           <DonationForm selectedTier={selectedTier} />
         </div>
       </Section>

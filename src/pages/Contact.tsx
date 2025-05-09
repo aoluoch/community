@@ -32,6 +32,7 @@ export default function Contact() {
   return (
     <>
       <PageHeader
+        page="contact"
         title="Contact Us"
         description="Get in touch with us. We're here to help and answer any questions you may have."
       />

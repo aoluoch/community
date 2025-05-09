@@ -19,6 +19,7 @@ export default function Gallery() {
   return (
     <>
       <PageHeader
+        page="gallery"
         title="Our Gallery"
         description="Explore moments and memories from our community events and programs."
       />

@@ -2,53 +2,57 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { blogPosts } from "@/lib/data";
 import { Section } from "@/components/ui/section";
-import { Grid } from "@/components/ui/grid";
 import PageHeader from "@/components/shared/PageHeader";
 import BlogCard from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
+const categories = [
+  "All",
+  "Community",
+  "Education",
+  "Youth",
+  "Development",
+  "Health",
+];
+
+const featuredPosts = blogPosts.filter((post) => post.featured);
+
 export default function Blog() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPosts = blogPosts.filter((post) => {
+    if (selectedCategory !== "All" && post.category !== selectedCategory)
+      return false;
+    if (
+      searchTerm &&
+      !post.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      !post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+      return false;
+    return true;
+  });
 
   useEffect(() => {
     document.title = "Blog - GetMore Centre";
   }, []);
 
-  const categories = [
-    "All",
-    ...Array.from(new Set(blogPosts.map((post) => post.category))),
-  ];
-
-  const featuredPosts = blogPosts.filter((post) => post.featured);
-
-  const filteredPosts = blogPosts.filter((post) => {
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "All" || post.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
   return (
     <>
       <PageHeader
-        title="Community Voices"
-        description="Stories, updates, and insights from our community."
+        page="blog"
+        title="Latest Articles"
+        description="Insights, updates, and stories from our community."
       />
 
       <Section>
-        {/* Featured Post */}
-        {featuredPosts.length > 0 &&
-          !searchTerm &&
-          selectedCategory === "All" && (
-            <div className="mb-12 lg:mb-16">
-              <BlogCard post={featuredPosts[0]} featured />
-            </div>
-          )}
+        {featuredPosts.length > 0 && (
+          <div className="mb-12 lg:mb-16">
+            <BlogCard post={featuredPosts[0]} featured />
+          </div>
+        )}
 
         <div className="flex flex-col md:flex-row justify-between mb-8 gap-4">
           <div className="relative w-full md:w-auto">

@@ -13,6 +13,7 @@ export default function Programs() {
   return (
     <>
       <PageHeader
+        page="programs"
         title="Our Programs"
         description="Discover our range of educational and support programs designed to empower our community members."
       />

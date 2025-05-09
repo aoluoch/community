@@ -1,5 +1,4 @@
 import { Section } from "@/components/ui/section";
-import { Grid } from "@/components/ui/grid";
 import PageHeader from "@/components/shared/PageHeader";
 import Mission from "@/components/about/Mission";
 import Timeline from "@/components/about/Timeline";
@@ -9,6 +8,7 @@ export default function About() {
   return (
     <>
       <PageHeader
+        page="about"
         title="About Us"
         description="Learn about our mission, history, and the team behind GetMore Centre."
       />
